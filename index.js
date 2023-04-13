@@ -40,10 +40,10 @@ Aşağıdakileri yapmak için aşağıdaki kopyalama işlevini kullanın:
 */
 
 
-function kopyala(/*kod buraya*/){
-  /*kod buraya*/
+function kopyala(dizi){
+  const orijinalTatlarKopya = dizi.slice();
+  return orijinalTatlarKopya;
 }
-
 
 /* Görev 2:
 Bir dizinin tam olarak 25 çeşit olduğunu onaylayın. İşleviniz şunları kabul etmelidir:
@@ -56,9 +56,16 @@ Bir dizinin tam olarak 25 çeşit olduğunu onaylayın. İşleviniz şunları ka
 */
 
 
-function dizi25Cesitmi(/*kod buraya*/){
-  /*kod buraya*/
+function dizi25Cesitmi(dizi) { 
+  const cesit = dizi.length
+  if (cesit === 25) {
+    return true;
+  } else {
+    return false;
+  }
 }
+console.log("25 çeşit mi? -> " + dizi25Cesitmi(orijinalTatlar))
+console.log(orijinalTatlar.length)
 
 
 /* Görev 3:
@@ -74,10 +81,12 @@ Aşağıdakileri yapmak için cesitEkle işlevini kullanın:
 */
 
 
-function cesitEkle(/*kod buraya*/){
-  /*kod buraya*/
+function cesitEkle(tatlar, yeniTat){
+  tatlar.unshift(yeniTat);
+  return tatlar;
 }
-
+cesitEkle (orijinalTatlar, "Kakule")
+console.log("cesitEkle -> " + orijinalTatlar)
 
 /* Cörev 4:
 
@@ -92,10 +101,12 @@ Aşağıdakileri yapmak için sonCesitiKaldir işlevini kullanın:
 */
 
 
-function sonCesitiKaldir(/*kod buraya*/){
-  /*kod buraya*/
+function sonCesitiKaldir(tatlar){
+tatlar.pop()
+return tatlar
 }
-
+sonCesitiKaldir(orijinalTatlar)
+console.log("sonCesidiKaldir -> " + orijinalTatlar)
 
 /* Görev 5:
 Dizideki belirli bir indeksteki çeşniyi döndüren bir işlev yazın.
@@ -108,10 +119,10 @@ Aşağıdakileri yapmak için aşağıdaki indekstekiCesitiGetir işlevini kulla
    Örneğin: indekstekiCesitiGetir(orijinalTatlar, 2) çalıştırılmasıyla, Kakule'in başarıyla eklendiği varsayarsak sonuç "Ceviz" olucaktır.
 */
 
-function indekstekiCesitiGetir(/*kod buraya*/){
-  /*kod buraya*/
+function indekstekiCesitiGetir(tatlar, sayi){
+ return tatlar[sayi]
 }
-
+console.log("çeşit getir -> " + indekstekiCesitiGetir(orijinalTatlar, 2))
 
 /* Görev 6:
 
@@ -128,10 +139,14 @@ Aşağıdakileri yapmak için ismeGoreCesitCikar işlevini kullanın:
   İPUCU: Bunun için .splice() kullanabilirsiniz.
 */
 
-function ismeGoreCesitCikar(/*kod buraya*/){
-  /*kod buraya*/
+function ismeGoreCesitCikar(tatlar, lezzetAdi){
+  const index = tatlar.indexOf(lezzetAdi);
+  tatlar.splice(index,1);
+  return tatlar;
 }
-
+ismeGoreCesitCikar(orijinalTatlar, "Tarçın")
+console.log("Tarçın çıktı -> " + orijinalTatlar)
+console.log("yeni uzunluk -> " + orijinalTatlar.length)
 
 /* Görev 7:
 
@@ -154,11 +169,15 @@ Aşağıdakileri yapmak için ismeGoreFiltrele işlevini kullanın:
 */
 
 
-function ismeGoreFiltrele(/*kod buraya*/){
-  /*kod buraya*/
+function ismeGoreFiltrele(tatlar, arananDeger){
+  const yeniDizi = [];
+  for (let i = 0; i < tatlar.length; i++) {
+    if (tatlar[i].includes(arananDeger)) {
+      yeniDizi.push(tatlar[i]);
+    } 
+  } return yeniDizi;
 }
-
-
+console.log("filtreli -> " + ismeGoreFiltrele(orijinalTatlar, "Çikolata"))
 
 /* ALIŞTIRMA */
 
@@ -172,9 +191,16 @@ Aşağıdakileri yapmak için ortalamaKelimeSayisi işlevini kullanın:
    Örneğin: ortalamaKelimeSayisi(orijinalTatlar) 0 ile 2 arasında bir sayı döndürmelidir.
 */
 
-function ortalamaKelimeSayisi(/*kod buraya*/){
-  /*kod buraya*/
+function ortalamaKelimeSayisi(dizi){
+  let toplamKelime = 0;
+for (let i = 0; i < dizi.length; i++) {
+  const elemandakiKelimeSayisi = dizi[i].split(" ").length;
+  toplamKelime += elemandakiKelimeSayisi
 }
+const ortalama = toplamKelime / dizi.length
+return ortalama
+}
+console.log("ALIŞTIRMA 1: " + ortalamaKelimeSayisi(orijinalTatlar))
 
 
 /* ALIŞTIRMA 2:
@@ -190,8 +216,15 @@ Aşağıdakileri yapmak için rastgeleTatlar işlevini ve yeni dizileri kullanı
 */
 
 
-function rastgeleTatlar(/*kod buraya*/){
-  /*kod buraya*/
+function rastgeleTatlar(dizi1, dizi2, dizi3, dizi4){
+const fullTatlar = [...dizi1, ...dizi2, ...dizi3, ...dizi4];
+const rastgeleTatlar = []
+for (let i = 0; i < 25; i++) {
+  const rastgeleIndex = Math.floor(Math.random() * fullTatlar.length)
+  const rastgeleTat = fullTatlar[rastgeleIndex]
+  rastgeleTatlar.push(rastgeleTat)
+}
+return rastgeleTatlar
 }
 
 // NEW DATA ARRAYS FOR STRETCH 2 ⬇️
